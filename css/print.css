@@ -1,0 +1,145 @@
+/* css/print.css — visual da view de impressão/PDF, replicando fielmente
+   o layout do formulário original em papel da ICM (mesma estrutura usada
+   em app/templates/ficha.html no app Python). Só aplicado dentro de
+   #view-impressao (ver pdf-render.js) — não interfere no formulário. */
+
+#view-impressao {
+  --verde-escuro: #00b050;
+  --verde-medio: #60e660;
+  --verde-claro: #66ff66;
+
+  display: none;
+  font-family: Calibri, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #000; font-size: 9px; line-height: 1.25;
+  background: #fff;
+}
+
+#view-impressao.ativa { display: block; }
+#view-impressao * { box-sizing: border-box; }
+
+#view-impressao .pagina { border: 2px solid #000; overflow: hidden; margin-bottom: 10mm; }
+#view-impressao .pagina:last-child { margin-bottom: 0; }
+
+/* ── Cabeçalho da página 1 (sem faixa verde, só o logo) ─────── */
+#view-impressao .cabecalho-p1 { display: flex; align-items: center; border-bottom: 2px solid #000; }
+#view-impressao .cabecalho-p1 .logo { height: 17mm; flex: 0 0 auto; padding: 1mm 3mm; }
+#view-impressao .cabecalho-p1 .titulo { flex: 1 1 auto; text-align: left; padding: 1mm 4mm 1mm 4mm; }
+#view-impressao .cabecalho-p1 .titulo .l1 { font-size: 12px; font-weight: 700; }
+#view-impressao .cabecalho-p1 .titulo .l2 { font-size: 10.5px; font-weight: 700; margin-top: 1px; }
+#view-impressao .cabecalho-p1 .titulo .l2 .aviso { font-size: 7px; font-weight: 400; color: #e8261c; }
+
+/* ── Cabeçalho verde (páginas 2-6) ───────────────────────────── */
+#view-impressao .cabecalho-verde {
+  display: flex; align-items: center; background: var(--verde-escuro);
+  border-bottom: 2px solid #000; min-height: 19mm;
+}
+#view-impressao .cabecalho-verde .logo { height: 16mm; flex: 0 0 auto; padding: 1mm 3mm; }
+#view-impressao .cabecalho-verde .titulo { flex: 1 1 auto; color: #fff; font-size: 13px; font-weight: 700; text-align: center; padding-right: 4mm; }
+#view-impressao .cabecalho-verde .titulo div { margin-top: 2px; font-size: 9.5px; }
+#view-impressao .campo-nome-topo { border-bottom: 2px solid #000; padding: 1.5mm 2mm; font-size: 9.2px; font-weight: 700; }
+#view-impressao .campo-nome-topo span.valor { font-weight: 400; margin-left: 2mm; }
+
+/* ── Barra de título de seção (verde médio, página 1) ────────── */
+#view-impressao .barra-titulo {
+  background: var(--verde-medio); border-top: 2px solid #000; border-bottom: 2px solid #000;
+  text-align: center; font-size: 10.5px; font-weight: 700; padding: 1.2mm 0;
+}
+
+/* ── Tabela de Dados Pessoais ─────────────────────────────────── */
+#view-impressao .dados-pessoais { display: flex; }
+#view-impressao .dados-pessoais .colunas { flex: 1 1 auto; }
+#view-impressao .linha-campo { display: flex; border-bottom: 1px solid #000; }
+#view-impressao .linha-campo:last-child { border-bottom: none; }
+#view-impressao .celula { display: flex; align-items: baseline; border-right: 1px solid #000; padding: 0.6mm 1.5mm; overflow: hidden; white-space: nowrap; }
+#view-impressao .celula:last-child { border-right: none; }
+#view-impressao .celula .rotulo { font-weight: 700; flex: 0 0 auto; margin-right: 1.5mm; white-space: nowrap; }
+#view-impressao .celula .valor { flex: 1 1 auto; font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-height: 2.6mm; }
+#view-impressao .foto-box {
+  flex: 0 0 24mm; border-left: 1px solid #000; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; font-size: 7.5px; font-weight: 700;
+  overflow: hidden;
+}
+#view-impressao .foto-box img { width: 20mm; height: 25mm; object-fit: cover; }
+
+/* ── Vida Espiritual: duas colunas ────────────────────────────── */
+#view-impressao .duas-colunas { display: flex; align-items: flex-start; }
+#view-impressao .duas-colunas > .coluna { flex: 0 0 50%; min-width: 0; }
+#view-impressao .duas-colunas > .coluna.esquerda { border-right: 2px solid #000; }
+
+#view-impressao .sub-header {
+  background: var(--verde-claro); border-bottom: 2px solid #000;
+  text-align: center; font-size: 9.7px; font-weight: 700; padding: 1.3mm 2mm;
+}
+
+#view-impressao .item { display: flex; border-bottom: 1px solid #000; padding: 0.25mm 1.5mm; align-items: baseline; }
+#view-impressao .item .texto { flex: 1 1 auto; font-weight: 600; padding-right: 1.5mm; }
+#view-impressao .item .resp {
+  flex: 0 0 auto; min-width: 11mm; max-width: 40%;
+  text-align: right; font-weight: 400; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+#view-impressao .item.full .resp { flex: 1 1 auto; max-width: none; text-align: left; margin-left: 1.5mm; }
+
+#view-impressao .item-par { display: flex; border-bottom: 1px solid #000; }
+#view-impressao .item-par .meio { flex: 1 1 auto; display: flex; align-items: baseline; padding: 0.25mm 1.5mm; border-right: 1px solid #000; }
+#view-impressao .item-par .meio:last-child { border-right: none; }
+#view-impressao .item-par .meio .texto { flex: 0 0 auto; font-weight: 600; margin-right: 1.5mm; }
+#view-impressao .item-par .meio .resp { flex: 1 1 auto; text-align: left; min-height: 2mm; }
+
+#view-impressao .assinatura-rodape { border-top: 2px solid #000; text-align: center; font-size: 7.3px; font-weight: 700; padding: 1mm; }
+
+#view-impressao .dom-titulo { background: var(--verde-medio); border-top: 2px solid #000; border-bottom: 1px solid #000; text-align: center; font-size: 7.5px; font-weight: 700; padding: 0.5mm; }
+#view-impressao .dom-texto { border-bottom: 2px solid #000; padding: 0.5mm 2mm; min-height: 13mm; font-size: 8px; white-space: pre-wrap; }
+#view-impressao .situacao-linha { display: flex; align-items: center; border-bottom: 2px solid #000; padding: 0.5mm 2mm; font-size: 7.3px; font-weight: 700; }
+#view-impressao .situacao-linha .rot { margin-right: 1.5mm; }
+#view-impressao .situacao-opcao { display: inline-flex; align-items: center; margin-right: 2.5mm; }
+#view-impressao .situacao-opcao .caixa {
+  display: inline-block; width: 2.6mm; height: 2.6mm; border: 1px solid #000;
+  margin-right: 1mm; text-align: center; line-height: 2.4mm; font-size: 2.6mm; background: #fff;
+}
+#view-impressao .situacao-opcao.marcada .caixa { background: var(--verde-claro); }
+#view-impressao .situacao-opcao.marcada .caixa::after { content: "✓"; }
+#view-impressao .data-assinatura { display: flex; border-bottom: 2px solid #000; font-size: 7.3px; font-weight: 700; }
+#view-impressao .data-assinatura > div { flex: 1 1 50%; text-align: center; padding: 0.8mm; }
+#view-impressao .data-assinatura > div:first-child { border-right: 1px solid #000; }
+
+/* ── Páginas com blocos de texto grande (2,3,5,6) ─────────────── */
+#view-impressao .bloco-titulo {
+  background: var(--verde-medio); border-top: 2px solid #000; border-bottom: 2px solid #000;
+  font-size: 10px; font-weight: 700; padding: 1.3mm 2mm; text-align: center;
+}
+#view-impressao .bloco-texto { border-bottom: 2px solid #000; padding: 2mm; min-height: 38mm; font-size: 9.2px; white-space: pre-wrap; }
+#view-impressao .pagina-5 .bloco-texto { min-height: 29mm; }
+#view-impressao .pagina-6 .bloco-texto { min-height: 39mm; }
+#view-impressao .pagina-3 .bloco-texto { min-height: 65mm; }
+
+/* ── Página 4: Mensagens ───────────────────────────────────────── */
+#view-impressao .msg-bloco-titulo {
+  background: var(--verde-medio); border-top: 2px solid #000; border-bottom: 2px solid #000;
+  font-size: 10px; font-weight: 700; padding: 1.3mm 2mm; text-align: center;
+}
+#view-impressao .msg-linha { border-bottom: 1px dashed #000; padding: 1.5mm 2mm; font-size: 9.2px; font-weight: 700; }
+#view-impressao .msg-linha span.valor { font-weight: 400; margin-left: 2mm; }
+#view-impressao .msg-descricao { border-bottom: 2px solid #000; padding: 2mm; min-height: 97mm; font-size: 9.2px; white-space: pre-wrap; }
+
+/* ── Página 6: perguntas numeradas ────────────────────────────── */
+#view-impressao .pergunta-titulo {
+  background: var(--verde-claro); border-top: 2px solid #000; border-bottom: 2px solid #000;
+  font-size: 10px; font-weight: 700; padding: 1.3mm 2mm; text-align: center;
+}
+#view-impressao .assinatura-esposa { padding: 3mm 2mm; font-size: 9.7px; font-weight: 700; }
+#view-impressao .assinatura-esposa .linha { border-bottom: 1px solid #000; display: inline-block; min-width: 140mm; margin-left: 2mm; }
+
+/* ── Chips Sim/Não ────────────────────────────────────────────── */
+#view-impressao .check { font-weight: 700; }
+#view-impressao .check-yes { color: #0d7a44; }
+#view-impressao .check-no { color: #ad2a2a; }
+#view-impressao .check-empty { color: #8993a3; }
+
+/* Ao imprimir, some com tudo que não é a view de impressão */
+@media print {
+  body > *:not(#view-impressao) { display: none !important; }
+  #view-impressao { display: block !important; }
+  #view-impressao .pagina { page-break-after: always; margin-bottom: 0; }
+  #view-impressao .pagina:last-child { page-break-after: auto; }
+  @page { size: A4; margin: 8mm; }
+}

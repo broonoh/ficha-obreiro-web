@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha de Obreiro — ICM</title>
+<link rel="icon" href="assets/icon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="capa">
+  <img src="assets/icon.png" alt="">
+  <h1>Ficha de Obreiro</h1>
+  <p>Igreja Cristã Maranata — credenciamento e acompanhamento ministerial</p>
+
+  <div class="card">
+    <h2>Começar uma ficha nova</h2>
+    <button type="button" id="btn-nova-ficha">✚ Nova Ficha</button>
+  </div>
+
+  <div class="card">
+    <h2>Já tem um link de ficha?</h2>
+    <p style="font-size:12.5px;color:var(--muted);margin:0 0 10px;">
+      Cole aqui o ID ou o link completo que você recebeu.
+    </p>
+    <input type="text" id="campo-id" placeholder="Cole o link ou o ID da ficha...">
+    <button type="button" id="btn-abrir-ficha" class="secundario">Abrir Ficha</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+<script src="js/firebase-init.js"></script>
+<script src="js/storage.js"></script>
+<script>
+  function mostrarToast(mensagem, erro) {
+    const toast = document.getElementById("toast");
+    toast.textContent = mensagem;
+    toast.className = "toast visivel" + (erro ? " erro" : "");
+    setTimeout(() => toast.classList.remove("visivel"), 2500);
+  }
+
+  document.getElementById("btn-nova-ficha").addEventListener("click", async (ev) => {
+    ev.target.disabled = true;
+    ev.target.textContent = "Criando...";
+    try {
+      const id = await criarFicha();
+      window.location.href = `ficha.html?id=${id}`;
+    } catch (e) {
+      console.error(e);
+      mostrarToast("❌ Erro ao criar ficha: " + e.message, true);
+      ev.target.disabled = false;
+      ev.target.textContent = "✚ Nova Ficha";
+    }
+  });
+
+  document.getElementById("btn-abrir-ficha").addEventListener("click", () => {
+    const valor = document.getElementById("campo-id").value.trim();
+    if (!valor) return;
+    // Aceita tanto um ID puro quanto um link completo (ficha.html?id=XXX).
+    const match = valor.match(/[?&]id=([^&]+)/);
+    const id = match ? match[1] : valor;
+    window.location.href = `ficha.html?id=${id}`;
+  });
+</script>
+</body>
+</html>

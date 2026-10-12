@@ -1,0 +1,169 @@
+/* css/style.css — visual do formulário editável (não é o de impressão,
+   ver print.css). Paleta igual ao app Python (navy/vermelho/dourado). */
+
+:root {
+  --navy: #03223f;
+  --navy-light: #0b3a63;
+  --red: #b41926;
+  --gold: #c89116;
+  --paper: #f8f7f3;
+  --ink: #1c2b3a;
+  --muted: #6b7585;
+  --border: #dde3ea;
+  --card: #ffffff;
+  --ok: #0d7a44;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+header.topo {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0,0,0,.2);
+}
+
+header.topo img { width: 36px; height: 36px; border-radius: 8px; }
+header.topo h1 { font-size: 16px; margin: 0; font-weight: 700; flex: 1; }
+header.topo .status { font-size: 12px; color: #cdd9e8; }
+header.topo .status.salvo { color: #8de3b0; }
+
+main { max-width: 820px; margin: 0 auto; padding: 16px; padding-bottom: 100px; }
+
+.caixa-link {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 18px; display: flex; align-items: center;
+  gap: 12px; flex-wrap: wrap;
+}
+.caixa-link .rotulo { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .3px; }
+.caixa-link input {
+  flex: 1; min-width: 200px; border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 10px; font-size: 13px; background: var(--paper); color: var(--ink);
+}
+.caixa-link button { white-space: nowrap; }
+
+.secao {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  margin-bottom: 14px; overflow: hidden;
+}
+.secao.parte-pastor { border-color: var(--gold); border-width: 2px; }
+
+.secao-header {
+  display: flex; align-items: center; gap: 10px; padding: 14px 16px;
+  cursor: pointer; user-select: none; background: var(--navy); color: #fff;
+}
+.secao.parte-pastor .secao-header { background: #6b4e08; }
+.secao-header .icone { font-size: 18px; }
+.secao-header .titulo { flex: 1; font-size: 14px; font-weight: 700; letter-spacing: .2px; }
+.secao-header .chevron { transition: transform .2s; font-size: 14px; }
+.secao-header.aberta .chevron { transform: rotate(90deg); }
+.secao-badge {
+  font-size: 9px; background: var(--gold); color: #3a2c04; padding: 2px 8px;
+  border-radius: 999px; font-weight: 700; text-transform: uppercase;
+}
+
+.secao-corpo { display: none; padding: 16px; }
+.secao-corpo.aberta { display: block; }
+
+.campo { margin-bottom: 14px; }
+.campo label {
+  display: block; font-size: 11.5px; font-weight: 700; color: var(--navy);
+  margin-bottom: 4px; text-transform: uppercase; letter-spacing: .2px;
+}
+.campo input[type="text"],
+.campo input[type="number"],
+.campo input[type="date"],
+.campo select,
+.campo textarea {
+  width: 100%; border: 1px solid var(--border); border-radius: 6px;
+  padding: 9px 10px; font-size: 14px; background: var(--paper); color: var(--ink);
+  font-family: inherit;
+}
+.campo textarea { min-height: 80px; resize: vertical; }
+.campo input:focus, .campo select:focus, .campo textarea:focus {
+  outline: none; border-color: var(--navy); background: #fff;
+}
+
+.campo-check { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.campo-check input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--navy); flex-shrink: 0; }
+.campo-check label { margin: 0; font-size: 13px; font-weight: 500; text-transform: none; color: var(--ink); }
+
+.campo-simnao { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+.campo-simnao > .rotulo { font-size: 13px; flex: 1 1 100%; font-weight: 500; }
+.campo-simnao label { display: flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; text-transform: none; margin: 0; }
+.campo-simnao input[type="radio"] { accent-color: var(--navy); }
+
+.linha-dupla { display: flex; gap: 12px; }
+.linha-dupla .campo { flex: 1; }
+
+.foto-area { display: flex; gap: 14px; align-items: center; margin-bottom: 14px; flex-wrap: wrap; }
+.foto-preview {
+  width: 100px; height: 132px; border: 2px solid var(--navy); border-radius: 6px;
+  background: var(--paper); display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--muted); text-align: center; overflow: hidden; flex-shrink: 0;
+}
+.foto-preview img { width: 100%; height: 100%; object-fit: cover; }
+.foto-botoes { display: flex; flex-direction: column; gap: 8px; }
+
+button {
+  font-family: inherit; font-size: 13px; font-weight: 700; border: none;
+  border-radius: 8px; padding: 10px 16px; cursor: pointer; color: #fff;
+  background: var(--navy); text-transform: uppercase; letter-spacing: .2px;
+}
+button:hover { filter: brightness(1.1); }
+button.vermelho { background: var(--red); }
+button.dourado { background: var(--gold); color: #3a2c04; }
+button.verde { background: var(--ok); }
+button.secundario { background: var(--card); color: var(--navy); border: 1px solid var(--border); }
+button:disabled { opacity: .5; cursor: not-allowed; }
+
+.barra-acoes {
+  position: fixed; bottom: 0; left: 0; right: 0; background: #fff;
+  border-top: 1px solid var(--border); padding: 12px 16px;
+  display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+  box-shadow: 0 -2px 8px rgba(0,0,0,.08); z-index: 10;
+}
+
+.aviso {
+  background: #fdf6e3; border: 1px solid var(--gold); border-radius: 8px;
+  padding: 10px 14px; font-size: 12.5px; color: #6b4e08; margin-bottom: 16px;
+}
+
+.toast {
+  position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+  background: var(--navy); color: #fff; padding: 10px 20px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; z-index: 100; opacity: 0; transition: opacity .3s;
+  pointer-events: none;
+}
+.toast.visivel { opacity: 1; }
+.toast.erro { background: var(--red); }
+
+/* Tela inicial (index.html) */
+.capa {
+  max-width: 480px; margin: 60px auto; text-align: center; padding: 0 20px;
+}
+.capa img { width: 90px; height: 90px; border-radius: 16px; margin-bottom: 16px; }
+.capa h1 { color: var(--navy); font-size: 22px; margin: 0 0 4px; }
+.capa p { color: var(--muted); font-size: 13.5px; margin-bottom: 28px; }
+.capa .card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px; margin-bottom: 16px; text-align: left;
+}
+.capa .card h2 { font-size: 14px; color: var(--navy); margin: 0 0 10px; }
+.capa .card button { width: 100%; }
+.capa .card .ou { text-align: center; font-size: 11px; color: var(--muted); margin: 14px 0; }
+.capa .card input { width: 100%; margin-bottom: 10px; }

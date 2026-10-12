@@ -1,0 +1,16 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /fichas/{fichaId} {
+      // Qualquer um que souber o ID exato do documento pode ler/editar —
+      // mesmo modelo "quem tem o link, acessa" usado hoje ao compartilhar
+      // o .json por WhatsApp. IDs do Firestore são strings longas e
+      // aleatórias: não são listáveis (allow list: false) nem adivinháveis
+      // na prática, mas qualquer pessoa com o link tem acesso total.
+      allow get, update: if true;
+      allow list: if false;
+      allow create: if true;
+      allow delete: if false;
+    }
+  }
+}
