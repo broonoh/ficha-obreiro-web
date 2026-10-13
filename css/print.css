@@ -100,7 +100,7 @@
 #view-impressao .assinatura-rodape { text-align: center; font-size: 7.3px; font-weight: 700; }
 #view-impressao .assinatura-rodape .espaco { min-height: 13mm; position: relative; }
 #view-impressao .assinatura-rodape .espaco::after {
-  content: ""; position: absolute; left: 4mm; bottom: 0; width: 75%; border-bottom: 1px solid #000;
+  content: ""; position: absolute; left: 4mm; right: 4mm; bottom: 0; border-bottom: 1px solid #000;
 }
 #view-impressao .assinatura-rodape .rotulo { padding: 1mm; }
 
