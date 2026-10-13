@@ -260,8 +260,8 @@ function renderizarImpressao(container, d) {
           <div class="dom-texto">${v(d.dom_conselho_presbiteral)}</div>
           ${situacaoOpcoesHtml(d.situacao_presbiterial)}
           <div class="data-assinatura">
-            <div>DATA<br>${v(d.data_conselho_presbiteral)}</div>
-            <div>ASSINATURA</div>
+            <div><div class="linha">${v(d.data_conselho_presbiteral)}</div>DATA</div>
+            <div><div class="linha"></div>ASSINATURA</div>
           </div>
         </div>
       </div>
