@@ -98,7 +98,7 @@
 #view-impressao .item-par .meio .resp { flex: 1 1 auto; text-align: left; min-height: 2mm; }
 
 #view-impressao .assinatura-rodape { text-align: center; font-size: 7.3px; font-weight: 700; }
-#view-impressao .assinatura-rodape .espaco { min-height: 13mm; border-bottom: 2px solid #000; }
+#view-impressao .assinatura-rodape .espaco { min-height: 13mm; margin: 0 20mm; border-bottom: 1px solid #000; }
 #view-impressao .assinatura-rodape .rotulo { padding: 1mm; }
 
 #view-impressao .dom-titulo { background: var(--verde-medio); border-top: 2px solid #000; border-bottom: 1px solid #000; text-align: center; font-size: 7.5px; font-weight: 700; padding: 0.5mm; }
