@@ -205,7 +205,11 @@ function renderizarImpressao(container, d) {
         ${itemCheck("37) CONCLUIU O CURSO DO INSTITUTO BÍBLICO?", d.concluiu_instituto_biblico)}
         ${itemV("    QUAL CURSO?", d.curso_realizado)}
         ${itemV("38) FREQUÊNCIA MÉDIA DA SUA IGREJA:", d.frequencia_media_igreja)}
-        ${item("39) ESTUDA NOITE? SIM / NÃO?", simNaoHtml(d.estuda_noite_sim, d.estuda_noite_nao), true)}
+        <div class="item"><span class="texto">39) ESTUDA NOITE? SIM / NÃO?</span></div>
+        <div class="item-par">
+          <div class="meio"><span class="texto">CANDIDATO</span><span class="resp">${simNaoHtml(d.estuda_noite_sim, d.estuda_noite_nao)}</span></div>
+          <div class="meio"><span class="texto">ESPOSA</span><span class="resp">${simNaoHtml(d.estuda_noite_esposa_sim, d.estuda_noite_esposa_nao)}</span></div>
+        </div>
         ${itemCheck("40) DISPOSTO A REALIZAR VIAGEM?", d.disposto_viagem)}
         ${itemV("41) ENVIA QUANTAS CONTRIBUIÇÕES DA EBD POR MÊS?", d.contribuicoes_ebd_mes, true)}
 
