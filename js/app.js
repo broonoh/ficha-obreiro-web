@@ -58,15 +58,25 @@ function gerarPdf() {
   renderizarImpressao(view, DADOS_ATUAIS);
   view.classList.add("ativa");
 
+  // window.print() NÃO é garantido ser bloqueante em todo navegador — no
+  // Chrome desktop o script pausa até a caixa fechar, mas em outros
+  // (Firefox, Safari, navegadores de celular) o script continua rodando
+  // com a caixa ainda aberta. Por isso o "esconder de novo" não pode ser
+  // um setTimeout com tempo fixo (podia rodar ANTES da pessoa terminar de
+  // salvar, apagando o conteúdo que seria impresso = PDF em branco) — tem
+  // que esperar o evento "afterprint", que só dispara quando a impressão
+  // realmente termina, não importa o navegador.
+  const esconderDeNovo = () => {
+    view.classList.remove("ativa");
+    window.removeEventListener("afterprint", esconderDeNovo);
+  };
+  window.addEventListener("afterprint", esconderDeNovo);
+
   // Pequena espera antes de abrir a impressão: chamar window.print() na
   // sequência imediata do innerHTML podia capturar a página antes do
   // navegador terminar de desenhar o layout novo (ex.: logo ainda não
   // posicionado), saindo com páginas em branco.
-  setTimeout(() => {
-    window.print();
-    // Some de novo depois de imprimir, pra não atrapalhar quem continua editando.
-    setTimeout(() => view.classList.remove("ativa"), 500);
-  }, 150);
+  setTimeout(() => window.print(), 150);
 }
 
 function copiarLink() {
