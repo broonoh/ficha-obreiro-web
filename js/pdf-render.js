@@ -25,13 +25,13 @@ function escaparHtml(s) {
 
 function checkHtml(valor) {
   if (valor === true || valor === "true") return '<span class="check check-yes">✓ Sim</span>';
-  if (valor === false || valor === "false") return '<span class="check check-no">✗ Não</span>';
+  if (valor === false || valor === "false") return '<span class="check check-no">✓ Não</span>';
   return "";
 }
 
 function simNaoHtml(sim, nao) {
   if (sim) return '<span class="check check-yes">✓ Sim</span>';
-  if (nao) return '<span class="check check-no">✗ Não</span>';
+  if (nao) return '<span class="check check-no">✓ Não</span>';
   return "";
 }
 
