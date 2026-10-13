@@ -14,9 +14,9 @@
   <h1>Ficha de Obreiro</h1>
   <p></p>
 
-  <div class="card" id="card-continuar" style="display:none;">
+  <div class="card">
     <h2>Minha Ficha</h2>
-    <button type="button" id="btn-continuar-ficha" class="secundario"></button>
+    <button type="button" id="btn-continuar-ficha" class="secundario" disabled>Nenhuma ficha salva</button>
   </div>
 
   <div class="card">
@@ -53,9 +53,9 @@
     try {
       const salvo = JSON.parse(localStorage.getItem("ultimaFicha") || "null");
       if (!salvo || !salvo.id) return;
-      document.getElementById("btn-continuar-ficha").textContent =
-        "📄 " + (salvo.nome ? salvo.nome : "Ficha sem nome");
-      document.getElementById("card-continuar").style.display = "";
+      const botao = document.getElementById("btn-continuar-ficha");
+      botao.textContent = "📄 " + (salvo.nome ? salvo.nome : "Ficha sem nome");
+      botao.disabled = false;
     } catch (e) {
       console.error(e);
     }
