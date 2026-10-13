@@ -22,6 +22,12 @@ function marcarStatus(texto, salvo = false) {
   status.className = "status" + (salvo ? " salvo" : "");
 }
 
+/** Guarda o ID/nome da ficha no navegador, pra tela principal (index.html)
+ * mostrar um atalho "Continuar ficha" sem precisar colar o link de novo. */
+function lembrarFichaLocal() {
+  localStorage.setItem("ultimaFicha", JSON.stringify({ id: FICHA_ID, nome: DADOS_ATUAIS.nome || "" }));
+}
+
 /** Salva um campo com debounce (evita gravar a cada tecla digitada). */
 function agendarSalvar(key, valor) {
   DADOS_ATUAIS[key] = valor;
@@ -30,6 +36,7 @@ function agendarSalvar(key, valor) {
   TIMER_SALVAR = setTimeout(async () => {
     try {
       await salvarCampos(FICHA_ID, { [key]: valor });
+      lembrarFichaLocal();
       marcarStatus("Salvo ✓", true);
     } catch (e) {
       console.error(e);
@@ -148,6 +155,7 @@ async function iniciar() {
     return;
   }
   DADOS_ATUAIS = dados;
+  lembrarFichaLocal();
 
   const container = document.getElementById("secoes");
   renderizarFormulario(container, DADOS_ATUAIS, agendarSalvar, tratarFotoSelecionada);
@@ -164,6 +172,7 @@ async function iniciar() {
     const temFocoEmCampo = document.activeElement && document.activeElement.tagName !== "BODY";
     if (temFocoEmCampo) return;
     DADOS_ATUAIS = novosDados;
+    lembrarFichaLocal();
     const abertas = [...container.querySelectorAll(".secao-header.aberta")].map((h) => h.querySelector(".titulo").textContent);
     renderizarFormulario(container, DADOS_ATUAIS, agendarSalvar, tratarFotoSelecionada);
     container.querySelectorAll(".secao-header").forEach((h) => {

@@ -14,6 +14,11 @@
   <h1>Ficha de Obreiro</h1>
   <p></p>
 
+  <div class="card" id="card-continuar" style="display:none;">
+    <h2>Minha Ficha</h2>
+    <button type="button" id="btn-continuar-ficha" class="secundario"></button>
+  </div>
+
   <div class="card">
     <h2>Começar uma ficha nova</h2>
     <button type="button" id="btn-nova-ficha">✚ Nova Ficha</button>
@@ -43,6 +48,23 @@
     toast.className = "toast visivel" + (erro ? " erro" : "");
     setTimeout(() => toast.classList.remove("visivel"), 2500);
   }
+
+  (function mostrarContinuar() {
+    try {
+      const salvo = JSON.parse(localStorage.getItem("ultimaFicha") || "null");
+      if (!salvo || !salvo.id) return;
+      document.getElementById("btn-continuar-ficha").textContent =
+        "📄 " + (salvo.nome ? salvo.nome : "Ficha sem nome");
+      document.getElementById("card-continuar").style.display = "";
+    } catch (e) {
+      console.error(e);
+    }
+  })();
+
+  document.getElementById("btn-continuar-ficha").addEventListener("click", () => {
+    const salvo = JSON.parse(localStorage.getItem("ultimaFicha") || "null");
+    if (salvo && salvo.id) window.location.href = `ficha.html?id=${salvo.id}`;
+  });
 
   document.getElementById("btn-nova-ficha").addEventListener("click", async (ev) => {
     ev.target.disabled = true;

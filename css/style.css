@@ -37,6 +37,13 @@ header.topo {
   box-shadow: 0 2px 8px rgba(0,0,0,.2);
 }
 
+header.topo .btn-home {
+  display: flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; border-radius: 8px; color: #fff;
+  background: rgba(255,255,255,.12); flex-shrink: 0;
+}
+header.topo .btn-home svg { width: 18px; height: 18px; }
+header.topo .btn-home:hover { background: rgba(255,255,255,.22); }
 header.topo img { width: 36px; height: 36px; border-radius: 8px; }
 header.topo h1 { font-size: 16px; margin: 0; font-weight: 700; flex: 1; }
 header.topo .status { font-size: 12px; color: #cdd9e8; }
