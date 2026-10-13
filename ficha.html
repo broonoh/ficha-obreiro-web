@@ -26,8 +26,6 @@
   </div>
 
   <div id="secoes"><!-- preenchido por js/app.js --></div>
-
-  <div id="view-impressao"><!-- preenchido por js/pdf-render.js na hora de gerar o PDF --></div>
 </main>
 
 <div class="barra-acoes">
@@ -35,6 +33,11 @@
 </div>
 
 <div class="toast" id="toast"></div>
+
+<!-- Fica fora de <main> de propósito: a regra de impressão esconde todo
+     filho direto de <body> que não seja este, então se ficasse dentro de
+     <main> o <main> inteiro (pai) seria escondido e levaria isto junto. -->
+<div id="view-impressao"><!-- preenchido por js/pdf-render.js na hora de gerar o PDF --></div>
 
 <!-- Firebase (SDK "compat", via CDN — sem precisar de build/npm) -->
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
