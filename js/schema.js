@@ -94,7 +94,7 @@ const FICHA_SCHEMA = [
       { key: "ultimo_seminario2", label: "2º Seminário", tipo: "data" },
       { key: "ultimo_seminario3", label: "3º Seminário", tipo: "data" },
 
-      { tipo: "titulo-grupo", label: "14) Participação no Maanaim/Igreja" },
+      { tipo: "titulo-grupo", label: "14) Participação no Maanaim/Igreja", n: 3 },
       { key: "participa_maanaim_voluntario", label: "Voluntário", tipo: "checkbox" },
       { key: "participa_maanaim_meio_semana", label: "Meio Semana", tipo: "checkbox" },
       { key: "participa_maanaim_final_semana", label: "Final de Semana", tipo: "checkbox" },
@@ -106,7 +106,7 @@ const FICHA_SCHEMA = [
       { key: "respeita_pastor_presbiterio", label: "19) Respeita o pastor e ao presbitério?", tipo: "checkbox" },
       { key: "zelo_bens_icm", label: "20) É zeloso com os bens da ICM?", tipo: "checkbox" },
 
-      { tipo: "titulo-grupo", label: "21) Dons Espirituais" },
+      { tipo: "titulo-grupo", label: "21) Dons Espirituais", n: 6 },
       { key: "dons_linguas", label: "Línguas", tipo: "checkbox" },
       { key: "dons_interpretacao", label: "Interpretação", tipo: "checkbox" },
       { key: "dons_ciencia", label: "Ciência", tipo: "checkbox" },

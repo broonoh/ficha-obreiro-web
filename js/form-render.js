@@ -31,7 +31,23 @@ function renderizarFormulario(container, dados, onAlterar, onFotoSelecionada) {
     const corpo = document.createElement("div");
     corpo.className = "secao-corpo";
 
-    for (const campo of secao.campos) {
+    const campos = secao.campos;
+    for (let i = 0; i < campos.length; i++) {
+      const campo = campos[i];
+
+      // "titulo-grupo" seguido de `n` checkboxes: são as opções de UMA
+      // pergunta (ex.: Voluntário/Meio Semana/Final de Semana) — ficam
+      // juntas numa caixa fechada, pra não parecer que a pergunta seguinte
+      // (numerada, fora do grupo) também é uma opção marcável dentro dele.
+      // `n` vem do schema (não dá pra inferir pelo tipo: perguntas depois
+      // do grupo também costumam ser checkbox, ex. "15) Participa...?").
+      if (campo.tipo === "titulo-grupo") {
+        const fim = i + 1 + campo.n;
+        corpo.appendChild(renderizarGrupoOpcoes(campo, campos.slice(i + 1, fim), dados, onAlterar));
+        i = fim - 1;
+        continue;
+      }
+
       corpo.appendChild(renderizarCampo(campo, dados, onAlterar, onFotoSelecionada));
     }
 
@@ -46,14 +62,36 @@ function renderizarFormulario(container, dados, onAlterar, onFotoSelecionada) {
   }
 }
 
-function renderizarCampo(campo, dados, onAlterar, onFotoSelecionada) {
-  if (campo.tipo === "titulo-grupo") {
-    const titulo = document.createElement("div");
-    titulo.className = "titulo-grupo";
-    titulo.textContent = campo.label;
-    return titulo;
-  }
+/** Título + suas opções de checkbox juntos numa caixa fechada (uma só
+ * pergunta de múltipla escolha), visualmente separada da próxima pergunta. */
+function renderizarGrupoOpcoes(tituloCampo, opcoes, dados, onAlterar) {
+  const caixa = document.createElement("div");
+  caixa.className = "grupo-opcoes";
 
+  const titulo = document.createElement("div");
+  titulo.className = "titulo-grupo";
+  titulo.textContent = tituloCampo.label;
+  caixa.appendChild(titulo);
+
+  const linha = document.createElement("div");
+  linha.className = "grupo-opcoes-linha";
+  for (const campo of opcoes) {
+    const valor = dados[campo.key];
+    const wrap = document.createElement("div");
+    wrap.className = "campo-check";
+    const id = `campo_${campo.key}`;
+    wrap.innerHTML = `<input type="checkbox" id="${id}"><label for="${id}">${campo.label}</label>`;
+    const input = wrap.querySelector("input");
+    input.checked = valor === true || valor === "true";
+    input.addEventListener("change", () => onAlterar(campo.key, input.checked));
+    linha.appendChild(wrap);
+  }
+  caixa.appendChild(linha);
+
+  return caixa;
+}
+
+function renderizarCampo(campo, dados, onAlterar, onFotoSelecionada) {
   const valor = dados[campo.key];
 
   if (campo.tipo === "foto") {
