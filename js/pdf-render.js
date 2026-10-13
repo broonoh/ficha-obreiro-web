@@ -213,7 +213,7 @@ function renderizarImpressao(container, d) {
         ${itemCheck("40) DISPOSTO A REALIZAR VIAGEM?", d.disposto_viagem)}
         ${itemV("41) ENVIA QUANTAS CONTRIBUIÇÕES DA EBD POR MÊS?", d.contribuicoes_ebd_mes, true)}
 
-        <div class="assinatura-rodape"><div class="espaco"></div><div class="rotulo">ASSINATURA DO &quot;OBREIRO&quot; (INDISPENSÁVEL)</div></div>
+        <div class="assinatura-rodape"><div class="espaco"><div class="linha"></div></div><div class="rotulo">ASSINATURA DO &quot;OBREIRO&quot; (INDISPENSÁVEL)</div></div>
       </div>
 
       <div class="coluna">
@@ -245,7 +245,7 @@ function renderizarImpressao(container, d) {
         ${itemV("IGREJA", d.pastor_igreja, true)}
         ${itemPar("CIDADE", d.pastor_cidade, "UF", d.pastor_uf)}
 
-        <div class="assinatura-rodape"><div class="espaco"></div><div class="rotulo">ASSINATURA DO PASTOR RESPONSÁVEL (INDISPENSÁVEL)${d.assinatura_pastor ? " — " + v(d.assinatura_pastor) : ""}</div></div>
+        <div class="assinatura-rodape"><div class="espaco"><div class="linha"></div></div><div class="rotulo">ASSINATURA DO PASTOR RESPONSÁVEL (INDISPENSÁVEL)${d.assinatura_pastor ? " — " + v(d.assinatura_pastor) : ""}</div></div>
 
         <div class="dom-bloco">
           <div class="dom-titulo">DOM NA COMISSÃO DA ÁREA / PÓLO - 1 dom resumido</div>
@@ -261,7 +261,7 @@ function renderizarImpressao(container, d) {
 
         <div class="dom-bloco">
           <div class="dom-titulo">CONSELHO PRESBITERAL</div>
-          <div class="dom-texto">${v(d.dom_conselho_presbiteral)}</div>
+          <div class="dom-texto dom-texto-grande">${v(d.dom_conselho_presbiteral)}</div>
           ${situacaoOpcoesHtml(d.situacao_presbiterial)}
           <div class="data-assinatura">
             <div><div class="linha">${v(d.data_conselho_presbiteral)}</div>DATA</div>

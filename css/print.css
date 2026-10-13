@@ -98,14 +98,13 @@
 #view-impressao .item-par .meio .resp { flex: 1 1 auto; text-align: left; min-height: 2mm; }
 
 #view-impressao .assinatura-rodape { text-align: center; font-size: 7.3px; font-weight: 700; }
-#view-impressao .assinatura-rodape .espaco { min-height: 13mm; position: relative; }
-#view-impressao .assinatura-rodape .espaco::after {
-  content: ""; position: absolute; left: 4mm; right: 4mm; bottom: 0; border-bottom: 1px solid #000;
-}
+#view-impressao .assinatura-rodape .espaco { min-height: 13mm; display: flex; flex-direction: column; justify-content: flex-end; }
+#view-impressao .assinatura-rodape .espaco .linha { margin: 0 2mm; border-bottom: 1px solid #000; }
 #view-impressao .assinatura-rodape .rotulo { padding: 1mm; }
 
 #view-impressao .dom-titulo { background: var(--verde-medio); border-top: 2px solid #000; border-bottom: 1px solid #000; text-align: center; font-size: 7.5px; font-weight: 700; padding: 0.5mm; }
 #view-impressao .dom-texto { border-bottom: 2px solid #000; padding: 0.5mm 2mm; min-height: 13mm; font-size: 8px; white-space: pre-wrap; }
+#view-impressao .dom-texto-grande { min-height: 23mm; }
 #view-impressao .situacao-linha { display: flex; align-items: center; border-bottom: 2px solid #000; padding: 0.5mm 2mm; font-size: 7.3px; font-weight: 700; }
 #view-impressao .situacao-linha .rot { margin-right: 1.5mm; }
 #view-impressao .situacao-opcao { display: inline-flex; align-items: center; margin-right: 2.5mm; }
@@ -115,9 +114,9 @@
 }
 #view-impressao .situacao-opcao.marcada .caixa { background: var(--verde-claro); }
 #view-impressao .situacao-opcao.marcada .caixa::after { content: "✓"; }
-#view-impressao .data-assinatura { display: flex; font-size: 7.3px; font-weight: 700; margin-top: 21mm; padding-top: 1mm; }
+#view-impressao .data-assinatura { display: flex; font-size: 7.3px; font-weight: 700; margin-top: 11mm; padding-top: 1mm; }
 #view-impressao .data-assinatura > div { flex: 1 1 50%; text-align: center; padding: 0 4mm 0.8mm; }
-#view-impressao .data-assinatura .linha { border-bottom: 1px solid #000; height: 4mm; margin: 0 4mm 1mm; }
+#view-impressao .data-assinatura .linha { border-bottom: 1px solid #000; height: 4mm; margin: 0 2mm 1mm; }
 
 /* ── Páginas com blocos de texto grande (2,3,5,6) ─────────────── */
 #view-impressao .bloco-titulo {
