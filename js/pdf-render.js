@@ -10,6 +10,13 @@ function v(valor) {
   return escaparHtml(String(valor));
 }
 
+/** <input type="date"> guarda "AAAA-MM-DD" — exibe como "DD/MM/AAAA". */
+function formatarData(valor) {
+  if (!valor) return valor;
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(valor);
+  return m ? `${m[3]}/${m[2]}/${m[1]}` : valor;
+}
+
 function escaparHtml(s) {
   const div = document.createElement("div");
   div.textContent = s;
@@ -120,7 +127,7 @@ function renderizarImpressao(container, d) {
         ${linha2("Rua", d.endereco_rua, "Bairro", d.endereco_bairro)}
         ${linha3("Cidade", d.endereco_cidade, "UF", d.endereco_uf, "CEP", d.endereco_cep)}
         ${linha2("E-mail", d.email, "Tel", d.telefone)}
-        ${linha2("Estado Civil", d.estado_civil, "Data Nascimento", d.data_nascimento)}
+        ${linha2("Estado Civil", d.estado_civil, "Data Nascimento", formatarData(d.data_nascimento))}
         ${linha3("Carteira de Identidade", d.rg, "OE", d.oe_orgao_emissor, "C.P.F.", d.cpf)}
         <div class="linha-campo">
           <div class="celula" style="flex:0 0 46%;"><span class="rotulo">Empregado</span><span class="valor">${v(d.empregado)}</span></div>
@@ -130,7 +137,7 @@ function renderizarImpressao(container, d) {
         </div>
         ${linha2("Se Militar: Qual Patente", d.militar_patente, "Arma", d.arma)}
         ${linha2("Se aposentado (motivo aposentadoria)", d.aposentado_motivo, "Empresa", d.empresa)}
-        ${linha3("Escolaridade", d.escolaridade, "Data de Preenchimento", d.data_preenchimento, "Nº", d.numero)}
+        ${linha3("Escolaridade", d.escolaridade, "Data de Preenchimento", formatarData(d.data_preenchimento), "Nº", d.numero)}
       </div>
       <div class="foto-box">
         ${foto ? `<img src="${foto}">` : "Foto<br>(terno e gravata)<br>3 X 4"}
@@ -153,14 +160,14 @@ function renderizarImpressao(container, d) {
         ${itemPar("08) TEMPO NA ICM? ANO(S)", d.tempo_icm_anos, "MÊS(ES)", d.tempo_icm_meses)}
         ${itemCheck("09) JÁ AFASTOU-SE DA IGREJA POR ALGUM MOTIVO?", d.afastou_igreja)}
         ${itemV("    MOTIVO", d.afastou_igreja_motivo, true)}
-        ${itemPar("    DATA", d.afastou_data1, "DATA", d.afastou_data2)}
-        ${itemV("    DATA", d.afastou_data3)}
+        ${itemPar("    DATA", formatarData(d.afastou_data1), "DATA", formatarData(d.afastou_data2))}
+        ${itemV("    DATA", formatarData(d.afastou_data3))}
         ${itemCheck("10) FOI PROVADO? (FOLHA ANEXA)", d.foi_provado)}
         ${itemV("    QUAIS?", d.foi_provado_qual, true)}
         ${itemCheck("11) TEM EXPERIÊNCIA? (FOLHA ANEXA)", d.tem_experiencia)}
         ${itemV("12) TEM SEQÜELAS DO PASSADO?", d.tem_sequelas_passado, true)}
-        ${itemPar("13) 1º SEMINÁRIO", d.ultimo_seminario1, "2º SEMINÁRIO", d.ultimo_seminario2)}
-        ${itemV("    3º SEMINÁRIO", d.ultimo_seminario3)}
+        ${itemPar("13) 1º SEMINÁRIO", formatarData(d.ultimo_seminario1), "2º SEMINÁRIO", formatarData(d.ultimo_seminario2))}
+        ${itemV("    3º SEMINÁRIO", formatarData(d.ultimo_seminario3))}
         ${itemV("14) PARTICIPAÇÃO NO MAANAIM/IGREJA", listaMarcados([
           [d.participa_maanaim_voluntario, "Voluntário"],
           [d.participa_maanaim_meio_semana, "Meio Semana"],
