@@ -115,7 +115,8 @@ const FICHA_SCHEMA = [
       { key: "dons_revelacao", label: "Revelação", tipo: "checkbox" },
       { key: "dons_nenhum", label: "Não", tipo: "checkbox" },
 
-      { key: "veio_outra_igreja", label: "22) Veio de outra igreja (denominação)? Qual?", tipo: "texto" },
+      { key: "veio_outra_igreja", label: "22) Veio de outra igreja (denominação)?", tipo: "simnao" },
+      { key: "veio_outra_igreja_qual", label: "Qual?", tipo: "texto" },
       { key: "cumpridor_obrigacoes", label: "23) É cumpridor de suas obrigações no seu trabalho?", tipo: "checkbox" },
       { key: "divida_irmaos", label: "24) Tem dívida com irmãos da igreja?", tipo: "checkbox" },
 

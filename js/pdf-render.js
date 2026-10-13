@@ -182,7 +182,8 @@ function renderizarImpressao(container, d) {
           [d.dons_linguas, "Línguas"], [d.dons_interpretacao, "Interpretação"], [d.dons_ciencia, "Ciência"],
           [d.dons_sonho, "Sonho"], [d.dons_visao, "Visão"], [d.dons_revelacao, "Revelação"], [d.dons_nenhum, "Não"],
         ]), true)}
-        ${itemV("22) VEIO DE OUTRA IGREJA (DENOMINAÇÃO)? QUAL?", d.veio_outra_igreja, true)}
+        ${item("22) VEIO DE OUTRA IGREJA (DENOMINAÇÃO)?", simNaoHtml(d.veio_outra_igreja_sim, d.veio_outra_igreja_nao))}
+        ${itemV("    QUAL?", d.veio_outra_igreja_qual, true)}
         ${itemCheck("23) É CUMPRIDOR DE SUAS OBRIGAÇÕES NO SEU TRABALHO?", d.cumpridor_obrigacoes)}
         ${itemCheck("24) TEM DÍVIDA COM IRMÃOS DA IGREJA?", d.divida_irmaos)}
         ${itemV("25) TEMPO DE CASADO (ANOS)", d.tempo_casado)}
