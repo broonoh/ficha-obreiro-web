@@ -164,7 +164,7 @@ function renderizarImpressao(container, d) {
         ${itemCheck("10) FOI PROVADO? (FOLHA ANEXA)", d.foi_provado)}
         ${itemV("    QUAIS?", d.foi_provado_qual, true)}
         ${itemCheck("11) TEM EXPERIÊNCIA? (FOLHA ANEXA)", d.tem_experiencia)}
-        ${itemV("12) TEM SEQÜELAS DO PASSADO?", d.tem_sequelas_passado, true)}
+        ${item("12) TEM SEQÜELAS DO PASSADO?", simNaoHtml(d.tem_sequelas_passado_sim, d.tem_sequelas_passado_nao))}
         ${itemPar("13) 1º SEMINÁRIO", formatarData(d.ultimo_seminario1), "2º SEMINÁRIO", formatarData(d.ultimo_seminario2))}
         ${itemV("    3º SEMINÁRIO", formatarData(d.ultimo_seminario3))}
         ${itemV("14) PARTICIPAÇÃO NO MAANAIM/IGREJA", listaMarcados([

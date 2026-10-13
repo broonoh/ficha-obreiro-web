@@ -89,7 +89,7 @@ const FICHA_SCHEMA = [
       { key: "foi_provado", label: "10) Foi provado? (folha anexa)", tipo: "checkbox" },
       { key: "foi_provado_qual", label: "Quais?", tipo: "texto" },
       { key: "tem_experiencia", label: "11) Tem experiência? (folha anexa)", tipo: "checkbox" },
-      { key: "tem_sequelas_passado", label: "12) Tem sequelas do passado?", tipo: "checkbox" },
+      { key: "tem_sequelas_passado", label: "12) Tem sequelas do passado?", tipo: "simnao" },
       { key: "ultimo_seminario1", label: "13) 1º Seminário", tipo: "data" },
       { key: "ultimo_seminario2", label: "2º Seminário", tipo: "data" },
       { key: "ultimo_seminario3", label: "3º Seminário", tipo: "data" },
