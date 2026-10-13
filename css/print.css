@@ -100,7 +100,7 @@
 #view-impressao .assinatura-rodape { text-align: center; font-size: 7.3px; font-weight: 700; }
 #view-impressao .assinatura-rodape .espaco { min-height: 13mm; position: relative; }
 #view-impressao .assinatura-rodape .espaco::after {
-  content: ""; position: absolute; left: 4mm; bottom: 0; width: 50%; border-bottom: 1px solid #000;
+  content: ""; position: absolute; left: 4mm; bottom: 0; width: 75%; border-bottom: 1px solid #000;
 }
 #view-impressao .assinatura-rodape .rotulo { padding: 1mm; }
 
@@ -115,7 +115,7 @@
 }
 #view-impressao .situacao-opcao.marcada .caixa { background: var(--verde-claro); }
 #view-impressao .situacao-opcao.marcada .caixa::after { content: "✓"; }
-#view-impressao .data-assinatura { display: flex; font-size: 7.3px; font-weight: 700; padding-top: 1mm; }
+#view-impressao .data-assinatura { display: flex; font-size: 7.3px; font-weight: 700; margin-top: 21mm; padding-top: 1mm; }
 #view-impressao .data-assinatura > div { flex: 1 1 50%; text-align: center; padding: 0 4mm 0.8mm; }
 #view-impressao .data-assinatura .linha { border-bottom: 1px solid #000; height: 4mm; margin: 0 4mm 1mm; }
 
