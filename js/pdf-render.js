@@ -178,10 +178,13 @@ function renderizarImpressao(container, d) {
         ${itemCheck("18) A FAMÍLIA É INTEGRADA NA ICM?", d.familia_integrada)}
         ${itemCheck("19) RESPEITA O PASTOR E AO PRESBITÉRIO?", d.respeita_pastor_presbiterio)}
         ${itemCheck("20) É ZELOSO COM OS BENS DA ICM?", d.zelo_bens_icm)}
-        ${itemV("21) É USADO NOS DONS: LÍNGUAS, INTERPR., CIÊNCIA, SONHO, VISÃO, REVELAÇÃO?", listaMarcados([
-          [d.dons_linguas, "Línguas"], [d.dons_interpretacao, "Interpretação"], [d.dons_ciencia, "Ciência"],
-          [d.dons_sonho, "Sonho"], [d.dons_visao, "Visão"], [d.dons_revelacao, "Revelação"], [d.dons_nenhum, "Não"],
-        ]), true)}
+        ${item("21) É USADO NOS DONS: LÍNGUAS, INTERPR., CIÊNCIA, SONHO, VISÃO, REVELAÇÃO?", [
+          v(listaMarcados([
+            [d.dons_linguas, "Línguas"], [d.dons_interpretacao, "Interpretação"], [d.dons_ciencia, "Ciência"],
+            [d.dons_sonho, "Sonho"], [d.dons_visao, "Visão"], [d.dons_revelacao, "Revelação"],
+          ])),
+          d.dons_nenhum ? '<span class="check check-no">✓ Não</span>' : "",
+        ].filter(Boolean).join(" "), true)}
         ${item("22) VEIO DE OUTRA IGREJA (DENOMINAÇÃO)?", simNaoHtml(d.veio_outra_igreja_sim, d.veio_outra_igreja_nao))}
         ${itemV("    QUAL?", d.veio_outra_igreja_qual, true)}
         ${itemCheck("23) É CUMPRIDOR DE SUAS OBRIGAÇÕES NO SEU TRABALHO?", d.cumpridor_obrigacoes)}
