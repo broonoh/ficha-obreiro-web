@@ -47,6 +47,13 @@ function renderizarFormulario(container, dados, onAlterar, onFotoSelecionada) {
 }
 
 function renderizarCampo(campo, dados, onAlterar, onFotoSelecionada) {
+  if (campo.tipo === "titulo-grupo") {
+    const titulo = document.createElement("div");
+    titulo.className = "titulo-grupo";
+    titulo.textContent = campo.label;
+    return titulo;
+  }
+
   const valor = dados[campo.key];
 
   if (campo.tipo === "foto") {

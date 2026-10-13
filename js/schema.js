@@ -94,7 +94,8 @@ const FICHA_SCHEMA = [
       { key: "ultimo_seminario2", label: "2º Seminário", tipo: "data" },
       { key: "ultimo_seminario3", label: "3º Seminário", tipo: "data" },
 
-      { key: "participa_maanaim_voluntario", label: "14) Participação no Maanaim/Igreja — Voluntário", tipo: "checkbox" },
+      { tipo: "titulo-grupo", label: "14) Participação no Maanaim/Igreja" },
+      { key: "participa_maanaim_voluntario", label: "Voluntário", tipo: "checkbox" },
       { key: "participa_maanaim_meio_semana", label: "Meio Semana", tipo: "checkbox" },
       { key: "participa_maanaim_final_semana", label: "Final de Semana", tipo: "checkbox" },
 
@@ -105,7 +106,8 @@ const FICHA_SCHEMA = [
       { key: "respeita_pastor_presbiterio", label: "19) Respeita o pastor e ao presbitério?", tipo: "checkbox" },
       { key: "zelo_bens_icm", label: "20) É zeloso com os bens da ICM?", tipo: "checkbox" },
 
-      { key: "dons_linguas", label: "21) Dons Espirituais — Línguas", tipo: "checkbox" },
+      { tipo: "titulo-grupo", label: "21) Dons Espirituais" },
+      { key: "dons_linguas", label: "Línguas", tipo: "checkbox" },
       { key: "dons_interpretacao", label: "Interpretação", tipo: "checkbox" },
       { key: "dons_ciencia", label: "Ciência", tipo: "checkbox" },
       { key: "dons_sonho", label: "Sonho", tipo: "checkbox" },
@@ -260,7 +262,9 @@ const FICHA_SCHEMA = [
 const FICHA_CAMPOS_POR_CHAVE = {};
 for (const secao of FICHA_SCHEMA) {
   for (const campo of secao.campos) {
-    if (campo.tipo === "simnao") {
+    if (!campo.key) {
+      continue;
+    } else if (campo.tipo === "simnao") {
       FICHA_CAMPOS_POR_CHAVE[`${campo.key}_sim`] = { secaoId: secao.id, campo };
       FICHA_CAMPOS_POR_CHAVE[`${campo.key}_nao`] = { secaoId: secao.id, campo };
     } else {
