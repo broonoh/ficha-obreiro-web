@@ -82,7 +82,7 @@ function cabecalhoP1() {
     <img class="logo" src="${LOGO_SRC}">
     <div class="titulo">
       <div class="l1">IGREJA CRISTÃ MARANATA</div>
-      <div class="l2">FORMULÁRIO DE OBREIROS <span class="aviso">(todos os campos são de preenchimento obrigatório e nenhum item deve ser alterado)</span></div>
+      <div class="l2">FORMULÁRIO DE OBREIROS <span class="aviso-pdf">(todos os campos são de preenchimento obrigatório e nenhum item deve ser alterado)</span></div>
     </div>
   </div>`;
 }

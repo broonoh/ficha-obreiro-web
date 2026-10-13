@@ -53,10 +53,28 @@ async function tratarFotoSelecionada(arquivo) {
   }
 }
 
+/** "João da Silva" -> "joao-da-silva" (sem acento, só letras/números/hífen). */
+function slugificar(texto) {
+  return (texto || "")
+    .normalize("NFD").replace(/[̀-ͯ]/g, "")
+    .toLowerCase().trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 function gerarPdf() {
   const view = document.getElementById("view-impressao");
   renderizarImpressao(view, DADOS_ATUAIS);
   view.classList.add("ativa");
+
+  // O nome sugerido pro arquivo (e o texto que o navegador imprime no
+  // cabeçalho/rodapé da página, se a opção "Cabeçalhos e rodapés" estiver
+  // marcada na caixa de impressão) vem do <title> da página no momento do
+  // print — trocamos pra "ficha-obreiro-nome-sobrenome" e devolvemos ao
+  // original depois.
+  const tituloOriginal = document.title;
+  const nomeArquivo = "ficha-obreiro" + (slugificar(DADOS_ATUAIS.nome) ? "-" + slugificar(DADOS_ATUAIS.nome) : "");
+  document.title = nomeArquivo;
 
   // window.print() NÃO é garantido ser bloqueante em todo navegador — no
   // Chrome desktop o script pausa até a caixa fechar, mas em outros
@@ -68,6 +86,7 @@ function gerarPdf() {
   // realmente termina, não importa o navegador.
   const esconderDeNovo = () => {
     view.classList.remove("ativa");
+    document.title = tituloOriginal;
     window.removeEventListener("afterprint", esconderDeNovo);
   };
   window.addEventListener("afterprint", esconderDeNovo);
