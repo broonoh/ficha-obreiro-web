@@ -115,8 +115,8 @@
 #view-impressao .situacao-opcao.marcada .caixa { background: var(--verde-claro); }
 #view-impressao .situacao-opcao.marcada .caixa::after { content: "✓"; }
 #view-impressao .data-assinatura { display: flex; font-size: 7.3px; font-weight: 700; margin-top: 11mm; padding-top: 1mm; }
-#view-impressao .data-assinatura > div { flex: 1 1 50%; text-align: center; padding: 0 4mm 0.8mm; }
-#view-impressao .data-assinatura .linha { border-bottom: 1px solid #000; height: 4mm; margin: 0 2mm 1mm; }
+#view-impressao .data-assinatura > div { flex: 1 1 50%; text-align: center; padding: 0 1mm 0.8mm; }
+#view-impressao .data-assinatura .linha { border-bottom: 1px solid #000; height: 4mm; margin: 0 0.5mm 1mm; }
 
 /* ── Páginas com blocos de texto grande (2,3,5,6) ─────────────── */
 #view-impressao .bloco-titulo {

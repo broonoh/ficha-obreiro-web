@@ -72,7 +72,7 @@ const FICHA_SCHEMA = [
       { key: "tempo_funcao_meses", label: "Tempo na Função (mês(es))", tipo: "numero" },
 
       { key: "grupo_intercessao", label: "03) Grupo de Intercessão?", tipo: "checkbox" },
-      { key: "responsavel_trabalho", label: "04) É responsável por trabalho/igreja?", tipo: "checkbox" },
+      { key: "responsavel_trabalho", label: "04) É responsável por trabalho/igreja?", tipo: "simnao" },
       { key: "responsavel_trabalho_qual", label: "Se sim, qual?", tipo: "texto" },
       { key: "crescimento_grupo_pct", label: "05) Crescimento (ou não) de seu grupo assistência ou igreja (%)", tipo: "numero" },
       { key: "visitas_mes", label: "06) Faz quantas visitas por mês aos irmãos da igreja?", tipo: "numero" },

@@ -151,7 +151,7 @@ function renderizarImpressao(container, d) {
         ${itemV("01) FUNÇÃO ATUAL: EVANGELISTA, OBREIRO, DIÁCONO OU UNGIDO?", d.funcao_atual)}
         ${itemPar("02) TEMPO NA FUNÇÃO? ANO(S)", d.tempo_funcao_anos, "MÊS(ES)", d.tempo_funcao_meses)}
         ${itemCheck("03) GRUPO DE INTERCESSÃO?", d.grupo_intercessao)}
-        ${itemCheck("04) É RESPONSÁVEL POR TRABALHO/IGREJA?", d.responsavel_trabalho)}
+        ${item("04) É RESPONSÁVEL POR TRABALHO/IGREJA?", simNaoHtml(d.responsavel_trabalho_sim, d.responsavel_trabalho_nao))}
         ${itemV("    SE SIM, QUAL?", d.responsavel_trabalho_qual, true)}
         ${itemV("05) CRESCIMENTO (OU NÃO) DE SEU GRUPO ASSISTÊNCIA OU IGREJA (%)", d.crescimento_grupo_pct)}
         ${itemV("06) FAZ QUANTAS VISITAS POR MÊS AOS IRMÃOS DA IGREJA?", d.visitas_mes)}
