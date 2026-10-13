@@ -80,7 +80,7 @@ const FICHA_SCHEMA = [
 
       { key: "tempo_icm_anos", label: "08) Tempo na ICM (ano(s))", tipo: "numero" },
       { key: "tempo_icm_meses", label: "Tempo na ICM (mês(es))", tipo: "numero" },
-      { key: "afastou_igreja", label: "09) Já afastou-se da igreja por algum motivo?", tipo: "checkbox" },
+      { key: "afastou_igreja", label: "09) Já afastou-se da igreja por algum motivo?", tipo: "simnao" },
       { key: "afastou_igreja_motivo", label: "Motivo", tipo: "texto" },
       { key: "afastou_data1", label: "Data do afastamento 1", tipo: "data" },
       { key: "afastou_data2", label: "Data do afastamento 2", tipo: "data" },

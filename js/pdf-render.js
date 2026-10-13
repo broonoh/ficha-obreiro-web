@@ -157,7 +157,7 @@ function renderizarImpressao(container, d) {
         ${itemV("06) FAZ QUANTAS VISITAS POR MÊS AOS IRMÃOS DA IGREJA?", d.visitas_mes)}
         ${itemCheck("07) É DIZIMISTA FIEL?", d.dizimista_fiel)}
         ${itemPar("08) TEMPO NA ICM? ANO(S)", d.tempo_icm_anos, "MÊS(ES)", d.tempo_icm_meses)}
-        ${itemCheck("09) JÁ AFASTOU-SE DA IGREJA POR ALGUM MOTIVO?", d.afastou_igreja)}
+        ${item("09) JÁ AFASTOU-SE DA IGREJA POR ALGUM MOTIVO?", simNaoHtml(d.afastou_igreja_sim, d.afastou_igreja_nao))}
         ${itemV("    MOTIVO", d.afastou_igreja_motivo, true)}
         ${itemPar("    DATA", formatarData(d.afastou_data1), "DATA", formatarData(d.afastou_data2))}
         ${itemV("    DATA", formatarData(d.afastou_data3))}
