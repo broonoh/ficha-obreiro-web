@@ -106,13 +106,14 @@ const FICHA_SCHEMA = [
       { key: "respeita_pastor_presbiterio", label: "19) Respeita o pastor e ao presbitério?", tipo: "checkbox" },
       { key: "zelo_bens_icm", label: "20) É zeloso com os bens da ICM?", tipo: "checkbox" },
 
-      { tipo: "titulo-grupo", label: "21) Dons Espirituais", n: 6 },
+      { tipo: "titulo-grupo", label: "21) Dons Espirituais", n: 7 },
       { key: "dons_linguas", label: "Línguas", tipo: "checkbox" },
       { key: "dons_interpretacao", label: "Interpretação", tipo: "checkbox" },
       { key: "dons_ciencia", label: "Ciência", tipo: "checkbox" },
       { key: "dons_sonho", label: "Sonho", tipo: "checkbox" },
       { key: "dons_visao", label: "Visão", tipo: "checkbox" },
       { key: "dons_revelacao", label: "Revelação", tipo: "checkbox" },
+      { key: "dons_nenhum", label: "Não", tipo: "checkbox" },
 
       { key: "veio_outra_igreja", label: "22) Veio de outra igreja (denominação)? Qual?", tipo: "texto" },
       { key: "cumpridor_obrigacoes", label: "23) É cumpridor de suas obrigações no seu trabalho?", tipo: "checkbox" },

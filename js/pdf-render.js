@@ -180,7 +180,7 @@ function renderizarImpressao(container, d) {
         ${itemCheck("20) É ZELOSO COM OS BENS DA ICM?", d.zelo_bens_icm)}
         ${itemV("21) É USADO NOS DONS: LÍNGUAS, INTERPR., CIÊNCIA, SONHO, VISÃO, REVELAÇÃO?", listaMarcados([
           [d.dons_linguas, "Línguas"], [d.dons_interpretacao, "Interpretação"], [d.dons_ciencia, "Ciência"],
-          [d.dons_sonho, "Sonho"], [d.dons_visao, "Visão"], [d.dons_revelacao, "Revelação"],
+          [d.dons_sonho, "Sonho"], [d.dons_visao, "Visão"], [d.dons_revelacao, "Revelação"], [d.dons_nenhum, "Não"],
         ]), true)}
         ${itemV("22) VEIO DE OUTRA IGREJA (DENOMINAÇÃO)? QUAL?", d.veio_outra_igreja, true)}
         ${itemCheck("23) É CUMPRIDOR DE SUAS OBRIGAÇÕES NO SEU TRABALHO?", d.cumpridor_obrigacoes)}
