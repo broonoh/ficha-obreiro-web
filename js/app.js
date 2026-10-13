@@ -62,10 +62,28 @@ function slugificar(texto) {
     .replace(/^-+|-+$/g, "");
 }
 
-function gerarPdf() {
+/** Espera uma imagem terminar de carregar (ou falhar), sem travar pra sempre
+ * se o evento nunca disparar por algum motivo. */
+function esperarImagem(img) {
+  if (img.complete) return Promise.resolve();
+  return new Promise((resolve) => {
+    const limite = setTimeout(resolve, 2000);
+    const pronto = () => { clearTimeout(limite); resolve(); };
+    img.addEventListener("load", pronto, { once: true });
+    img.addEventListener("error", pronto, { once: true });
+  });
+}
+
+async function gerarPdf() {
   const view = document.getElementById("view-impressao");
   renderizarImpressao(view, DADOS_ATUAIS);
   view.classList.add("ativa");
+
+  // O logo (e a foto do obreiro) são <img> recém-criados pelo innerHTML
+  // acima — ainda estão buscando o arquivo pela rede nesse instante. Sem
+  // esperar o carregamento de verdade, window.print() podia disparar com
+  // a imagem ainda em branco, saindo sem o logo no PDF.
+  await Promise.all([...view.querySelectorAll("img")].map(esperarImagem));
 
   // O nome sugerido pro arquivo (e o texto que o navegador imprime no
   // cabeçalho/rodapé da página, se a opção "Cabeçalhos e rodapés" estiver
