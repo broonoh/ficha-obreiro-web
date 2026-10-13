@@ -112,7 +112,6 @@ function blocoTexto(titulo, valor) {
 /** Monta a view de impressão a partir dos dados da ficha. */
 function renderizarImpressao(container, d) {
   const foto = d.foto_base64 || d.foto_url;
-  const geradoEm = new Date().toLocaleString("pt-BR");
   const ehUngido = d.funcao_atual === "Ungido";
 
   container.innerHTML = `
@@ -257,7 +256,7 @@ function renderizarImpressao(container, d) {
           <div class="dom-texto">${v(d.dom_conselho_presbiteral)}</div>
           ${situacaoOpcoesHtml(d.situacao_presbiterial)}
           <div class="data-assinatura">
-            <div>DATA<br>${escaparHtml(geradoEm)}</div>
+            <div>DATA<br>${v(d.data_conselho_presbiteral)}</div>
             <div>ASSINATURA</div>
           </div>
         </div>
