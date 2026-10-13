@@ -3,6 +3,16 @@
    em app/templates/ficha.html no app Python). Só aplicado dentro de
    #view-impressao (ver pdf-render.js) — não interfere no formulário. */
 
+#view-impressao, #view-impressao * {
+  /* Sem isso, o navegador some com toda cor de fundo ao imprimir/salvar
+     como PDF, a menos que a pessoa marque manualmente "Gráficos de segundo
+     plano" na caixa de impressão — e como o texto das faixas verdes é
+     branco, sem o fundo ele fica invisível (branco sobre página branca). */
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+  color-adjust: exact;
+}
+
 #view-impressao {
   --verde-escuro: #00b050;
   --verde-medio: #60e660;

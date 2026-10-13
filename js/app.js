@@ -57,9 +57,16 @@ function gerarPdf() {
   const view = document.getElementById("view-impressao");
   renderizarImpressao(view, DADOS_ATUAIS);
   view.classList.add("ativa");
-  window.print();
-  // Some de novo depois de imprimir, pra não atrapalhar quem continua editando.
-  setTimeout(() => view.classList.remove("ativa"), 500);
+
+  // Pequena espera antes de abrir a impressão: chamar window.print() na
+  // sequência imediata do innerHTML podia capturar a página antes do
+  // navegador terminar de desenhar o layout novo (ex.: logo ainda não
+  // posicionado), saindo com páginas em branco.
+  setTimeout(() => {
+    window.print();
+    // Some de novo depois de imprimir, pra não atrapalhar quem continua editando.
+    setTimeout(() => view.classList.remove("ativa"), 500);
+  }, 150);
 }
 
 function copiarLink() {
